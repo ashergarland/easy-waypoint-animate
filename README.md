@@ -1,6 +1,6 @@
 # easy-waypoint-animate
 
-## Makes using waypoints to trigger Animate.css on scroll easy!
+**Makes using waypoints to trigger Animate.css on scroll easy!**
 
 The general use case for most developers building modern websites is that they want to trigger an element to become visible with some nice simple animation when it scrolls into view.
 
@@ -64,7 +64,7 @@ $(document).ready(function() {
 - [Waypoints](http://imakewebthings.com/waypoints/) * Specifically requires the jquery version of Waypoints
 - [Animate.css](https://daneden.github.io/animate.css/)
 
-# Installation
+## Installation
 1. Copy `easy-way-point-animate.css` and `easy-waypoint-animate.js`to your website source files.
 2. Link `easy-way-point-animate.css` with your other css files
 ```html
