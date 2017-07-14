@@ -1,4 +1,6 @@
-function onScrollInitAnimation( items, offset, container ) {
+function onScrollInitAnimation(items, options) {
+    const offset = options.offset || null;
+    const container = options.container || null;
     items.each( function() {
         var element = $(this),
         animationClass = element.attr('data-animation'),
