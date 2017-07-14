@@ -28,7 +28,7 @@ If you want to customize the element to be triggered when it is 30% above the bo
 `scripts.js`
 ```javascript
 $(document).ready(function() {
-    onScrollInitAnimation($(".toBeAnimated", "30%")); <!-- waypoint now triggers at a 30% offset from the bottom, default is 90% -->
+    onScrollInitAnimation($(".toBeAnimated", { offset: "30%"} )); <!-- waypoint now triggers at a 30% offset from the bottom, default is 90% -->
 });
 ```
 
@@ -47,9 +47,16 @@ If you want to group elements to be triggered when their container scrolls into 
 `scripts.js`
 ```javascript
 $(document).ready(function() {
-    onScrollInitAnimation($(".toBeAnimated"), "60%", $(".animated-group"));
+    onScrollInitAnimation($(".toBeAnimated"), { offset: "60%", container: $(".animated-group") });
 });
 ```
+
+### onScrollInitAnimation
+
+**onScrollInitAnimation(items, options)**
+
+- items: jQuery element
+- options: 
 
 ## Requirements
 
@@ -73,3 +80,4 @@ $(document).ready(function() {
 <script src="js/bootstrap.js"></script>
 <script src="js/jquery.waypoints.min.js"></script>
 ```
+
