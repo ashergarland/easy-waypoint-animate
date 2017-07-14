@@ -1,6 +1,6 @@
 # easy-waypoint-animate
 
-**Makes using waypoints to trigger Animate.css on scroll easy!**
+** Makes using waypoints to trigger Animate.css on scroll easy! **
 
 The general use case for most developers building modern websites is that they want to trigger an element to become visible with some nice simple animation when it scrolls into view.
 
@@ -51,12 +51,24 @@ $(document).ready(function() {
 });
 ```
 
-### onScrollInitAnimation
+### API
 
 **onScrollInitAnimation(items, options)**
 
-- items: jQuery element
-- options: 
+- items - jQuery selector element of the elements you want to trigger an animation
+- options - options to define the offset or containing trigger group for those items
+
+**options**
+
+- offset - string containing a percent which represents the offset *from the bottom of the view* at which you want to trigger the animation to occur
+- container - jQuery selector for the container of the items. This container becomes the animation trigger and when it is scrolled into view `items` will all be triggered for animation.
+
+```js
+{
+    offset: "50%",
+    container: ".animated-group"
+}
+```
 
 ## Requirements
 
