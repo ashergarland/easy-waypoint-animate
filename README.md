@@ -1,6 +1,6 @@
 # easy-waypoint-animate
 
-## Makes using waypoints to trigger Animate.css on scroll easy!
+** Makes using waypoints to trigger Animate.css on scroll easy! **
 
 The general use case for most developers building modern websites is that they want to trigger an element to become visible with some nice simple animation when it scrolls into view.
 
