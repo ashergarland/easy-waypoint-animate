@@ -53,9 +53,9 @@ $(document).ready(function() {
 
 ## Requirements
 
-[jQuery](https://jquery.com/)
-[Waypoints](http://imakewebthings.com/waypoints/) * Specifically requires the jquery version of Waypoints
-[Animate.css](https://daneden.github.io/animate.css/)
+- [jQuery](https://jquery.com/)
+- [Waypoints](http://imakewebthings.com/waypoints/) * Specifically requires the jquery version of Waypoints
+- [Animate.css](https://daneden.github.io/animate.css/)
 
 # Installation
 1. Copy `easy-way-point-animate.css` and `easy-waypoint-animate.js`to your website source files.
