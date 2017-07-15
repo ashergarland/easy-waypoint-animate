@@ -1,74 +1,125 @@
 # easy-waypoint-animate
 
-** Makes using waypoints to trigger Animate.css on scroll easy! **
+**Makes using waypoints to trigger Animate.css on scroll easy!**
 
 The general use case for most developers building modern websites is that they want to trigger an element to become visible with some nice simple animation when it scrolls into view.
 
 To achieve this, the go-to solution is to combined Animate.css for the animations and Waypoints for the triggering of the animation when the element comes into view.
 Doing this can get messy as developers are often lead down a path of defining css classes and initializing the waypoints for each individual element they want to animate - it quickly gets messy.
 
+The best way to define animation and behaviors in general for elements is through data attributes. We will use data attributes to specify the type of animations our elements will perform.
+
 With easy-waypoint-animate it's as simple as:
 
 `index.html`
 ```html
-<h1 class="toBeAnimated" data-animation="fadeInUp">Hello World!</h1>
+<h1 class="ez-animate" data-animation="fadeInUp">Hello World!</h1>
 ```
 
 `scripts.js`
 ```javascript
 $(document).ready(function() {
-    onScrollInitAnimation($(".toBeAnimated"));
+    InitWaypointAnimations();
 });
 ```
+
+As you can see we added the class `ez-animate` and added our animation type with `data-animation="fadeInUp"`.
 
 This will hide the `<h2>` element into it is scrolled into view and will display it with a `fadeInUp` animation from Animate.css.
 
-If you want to customize the element to be triggered when it is 30% above the bottom of the view:
+To view all supported animation types, check out [Animate.css](https://daneden.github.io/animate.css/).
 
-`scripts.js`
-```javascript
-$(document).ready(function() {
-    onScrollInitAnimation($(".toBeAnimated", { offset: "30%"} )); <!-- waypoint now triggers at a 30% offset from the bottom, default is 90% -->
-});
-```
+## Customize your element animations in HTML
 
-If you want to group elements to be triggered when their container scrolls into view and give each element a staggered animation delay:
+* Add class `ez-animate` to elements you want animated.
+* Add `data-attribute` to set elements' Animate.css animation
+* Add `data-attribute-delay` to set elements` animation delay
+* Add `data-attribute-offset` to set elements' trigger offset
+* Add class `ez-animate-group` to containers around your `ez-animate` elements for group triggered animations (useful for staggered animations).
+
+Read below for more detailed information.
+
+### Animation Delay 
+
+If you want your animation to occur 0.5 seconds after it has scrolled into view:
 
 `index.html`
 ```html
-<div class="animated-group">
-    <h1 class="toBeAnimated" data-animation="fadeInDown">Easy</h1> <!-- default delay is 0s -->
-    <h2 class="toBeAnimated" data-animation="fadeInLeft" data-animation-delay="0.3s">Waypoint</h1>
-    <h3 class="toBeAnimated" data-animation="fadeInRight" data-animation-delay="0.6s">Animate</h1>
-    <h4 class="toBeAnimated" data-animation="fadeInUp" data-animation-delay="0.9s">css</h1>
+<h1 class="ez-animate" data-animation="fadeInUp" data-animation-delay="0.5s">Hello World!</h1>
+```
+### Trigger Offset
+
+The trigger offset changes the location of point at which when the user scrolls passed will trigger the animation to occur. 
+By default the trigger offset is set to `"90%"` which is 90% of the total viewport's height (10% from the bottom).
+If you want to customize the element to be triggered when it is 30% above the bottom of the view you can set it to 60%:
+
+`index.html`
+```html
+<h1 class="ez-animate" data-animation="fadeInUp" data-animation-offset="60%">Hello World!</h1>
+```
+
+You can also specify it by the number of pixels by passing a number:
+
+`index.html`
+```html
+<h1 class="ez-animate" data-animation="fadeInUp" data-animation-offset=250>Hello World!</h1>
+```
+
+This will trigger the animation when the element is 250px from the top.
+
+Check out all the supported offset types in the [Waypoints documentation for offset](http://imakewebthings.com/waypoints/api/offset-option/)/
+
+### Group triggered animations and staggered animations
+
+If you want to group elements to be triggered when their container scrolls into view and give each element a staggered animation delay, add the `ez-animate-group` and give each a different animation delay:
+
+`index.html`
+```html
+<div class="ez-animate-group" data-animation-offset="50%">
+    <h1 class="ez-animate" data-animation="fadeInDown">Easy</h1> <!-- default delay is 0s -->
+    <h2 class="ez-animate" data-animation="fadeInLeft" data-animation-delay="0.3s">Waypoint</h1>
+    <h3 class="ez-animate" data-animation="fadeInRight" data-animation-delay="0.6s">Animate</h1>
+    <h4 class="ez-animate" data-animation="fadeInUp" data-animation-delay="0.9s">css</h1>
 </div>
 ```
+
+Animation elements that are contained grouped in a container will use the `data-animation-offset` of the container and ignore their own attribute. 
+
+If a animation group element does not have the `data-animation-offset` attribute set then it will use the default of `"90%"`.
+
+## Configuring the defaults
+
+The defaults are able to customized with our `InitWaypointAnimations` function.
+
+### Defaults
+
+* delay - Set the default animation delay for all elements. Default is `"0s"`.
+* offset - Set the default animation trigger offset for all elements and container groups. Default is `"90%"`.
+* animateClass - Set the class name for animation elements. Default is `"ez-animate"`.
+* animateGroupClass - Set the class name for animation element group containers. Default is `"ez-animate-group"`.
 
 `scripts.js`
 ```javascript
 $(document).ready(function() {
-    onScrollInitAnimation($(".toBeAnimated"), { offset: "60%", container: $(".animated-group") });
+    InitWaypointAnimations({
+        delay: "0.5s",
+        offset: "50%",
+        animateClass: "animate-on-scroll",
+        animateGroupClass: "animate-group-on-scroll"
+    });
 });
 ```
 
-### API
+## Easiest way to use this!
 
-**onScrollInitAnimation(items, options)**
+If you don't want to deal with setting the `data-animation-delay` or the `data-animation-offset` on every element, then take advantage of defaults.
 
-- items - jQuery selector element of the elements you want to trigger an animation
-- options - options to define the offset or containing trigger group for those items
+Set the defaults to what you want, add the animate class to your element and BOOM you're done.
 
-**options**
+You could always spruce it up a little bit by adding a animation group container for some fancy staggered animation using delays, but that is honestly just a special case now. 
 
-- offset - string containing a percent which represents the offset *from the bottom of the view* at which you want to trigger the animation to occur
-- container - jQuery selector for the container of the items. This container becomes the animation trigger and when it is scrolled into view `items` will all be triggered for animation.
+Now you can just set everything up once using the defaults, add one class name to a few elements, maybe get fancy in a couple areas, and you're done.
 
-```js
-{
-    offset: "50%",
-    container: ".animated-group"
-}
-```
 
 ## Requirements
 
@@ -77,11 +128,7 @@ $(document).ready(function() {
 - [Animate.css](https://daneden.github.io/animate.css/)
 
 ## Installation
-1. Copy `easy-way-point-animate.css` and `easy-waypoint-animate.js`to your website source files.
-2. Link `easy-way-point-animate.css` with your other css files
-```html
-<link rel="stylesheet" type="text/css" href="easy-way-point-animate.css">
-```
+1. Copy `easy-waypoint-animate.js`to your website source files.
 3. Link `easy-waypoint-animate.js` with your other js files
 ```html
 <script src="js/easy-waypoint-animate.js"></script>
