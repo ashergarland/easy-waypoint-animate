@@ -5,7 +5,11 @@
 The general use case for most developers building modern websites is that they want to trigger an element to become visible with some nice simple animation when it scrolls into view.
 
 To achieve this, the go-to solution is to combined Animate.css for the animations and Waypoints for the triggering of the animation when the element comes into view.
-Doing this can get messy as developers are often lead down a path of defining css classes and initializing the waypoints for each individual element they want to animate - it quickly gets messy.
+Doing this can get messy as developers are often led down a path of defining css classes and initializing the waypoints for each and every element they want to animate - it quickly gets messy.
+
+**I don't want to clog up my website with a bunch of CSS classes and javascript snippits just to handle animations!**
+
+With easy-waypoint-animate we get rid of all the extra CSS classes and Javascript snippits, keeping things simple for you with just a little HTML flair.
 
 The best way to define animation and behaviors in general for elements is through data attributes. We will use data attributes to specify the type of animations our elements will perform.
 
@@ -67,7 +71,7 @@ You can also specify it by the number of pixels by passing a number:
 
 This will trigger the animation when the element is 250px from the top.
 
-Check out all the supported offset types in the [Waypoints documentation for offset](http://imakewebthings.com/waypoints/api/offset-option/)/
+Check out all the supported offset types in the [Waypoints documentation for offset](http://imakewebthings.com/waypoints/api/offset-option/).
 
 ### Group triggered animations and staggered animations
 
@@ -89,7 +93,7 @@ If a animation group element does not have the `data-animation-offset` attribute
 
 ## Configuring the defaults
 
-The defaults are able to customized with our `InitWaypointAnimations` function.
+The defaults are able to be customized with our `InitWaypointAnimations` function.
 
 ### Defaults
 
@@ -116,7 +120,7 @@ If you don't want to deal with setting the `data-animation-delay` or the `data-a
 
 Set the defaults to what you want, add the animate class to your element and BOOM you're done.
 
-You could always spruce it up a little bit by adding a animation group container for some fancy staggered animation using delays, but that is honestly just a special case now. 
+You could always spruce it up a little bit by adding a animation group container for some fancy staggered animation using delays, but that is honestly just a special case for you now. 
 
 Now you can just set everything up once using the defaults, add one class name to a few elements, maybe get fancy in a couple areas, and you're done.
 
