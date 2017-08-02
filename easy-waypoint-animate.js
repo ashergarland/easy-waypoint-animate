@@ -31,6 +31,7 @@ var InitWaypointAnimations = (function () {
     }
     
     function InitWaypointAnimations(defaults) {
+        if(!defaults) { defaults = {}; }
         const options = {
             offset: defaults.offset || "90%",
             delay: defaults.delay || "0s",
